@@ -184,3 +184,39 @@ h1 em, h2 em, h3 em, .mosaic-caption em {
   .trust-card small { display: block; }
   .trust-card strong { font-size: 11px; }
 }
+
+/* ===== ضيف ده في آخر index.css (بعد ملف الـ rose override) ===== */
+
+/* هيدر ثابت يتحول لزجاجي عند السكرول */
+.site-header { position: fixed; transition: background .5s, padding .5s, box-shadow .5s; }
+.site-header.is-solid { padding-block: 12px; background: rgba(58,27,38,.92); box-shadow: 0 10px 40px rgba(0,0,0,.25); }
+
+/* شريط تقدم السكرول */
+.progress-bar { position: fixed; z-index: 120; top: 0; left: 0; height: 2px; background: linear-gradient(90deg, #c98b86, #f0cdc4); box-shadow: 0 0 12px rgba(201,139,134,.7); transition: width .12s; }
+
+/* زرار واتساب عائم */
+.wa-float { position: fixed; z-index: 60; right: 22px; bottom: 22px; display: grid; place-items: center; width: 58px; height: 58px; border-radius: 50%; color: #3a1b26; background: linear-gradient(135deg, #f0cdc4, #c98b86); box-shadow: 0 14px 40px rgba(201,139,134,.55); transition: transform .4s cubic-bezier(.16,1,.3,1); }
+.wa-float:hover { transform: translateY(-4px) scale(1.06); }
+.wa-float:before { position: absolute; inset: 0; border-radius: 50%; border: 1px solid #f0cdc4; content: ''; animation: waPulse 2.4s infinite; }
+@keyframes waPulse { from { transform: scale(1); opacity: .8; } to { transform: scale(1.7); opacity: 0; } }
+
+/* شريط الخدمات المتحرك */
+.marquee { overflow: hidden; padding: 20px 0; color: #3a1b26; background: linear-gradient(90deg, #f0cdc4, #fbf3ee 50%, #f0cdc4); border-block: 1px solid rgba(201,139,134,.35); }
+.marquee-track { display: flex; width: max-content; animation: marquee 55s linear infinite; }
+.marquee-track span { display: flex; align-items: center; gap: 28px; padding-right: 28px; font-family: 'Fraunces', serif; font-size: clamp(1.4rem, 2.6vw, 2.3rem); font-style: italic; white-space: nowrap; }
+.marquee-track i { color: #c98b86; font-size: .6em; font-style: normal; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+/* سلايدر قبل/بعد: قص بدل تغيير العرض (يشتغل على كل الشاشات) */
+.case-image.before { border-right: 0; }
+.case-image.before img { width: 100%; max-width: none; }
+
+/* صور الخدمات تتحرك بنعومة، وتواريخ الحجز على صفين */
+.date-strip { grid-template-columns: repeat(5, 1fr); }
+.date-strip button { transition: transform .3s, background .3s; }
+.date-strip button:hover { transform: translateY(-3px); }
+.booking-modal { animation: modalIn .7s cubic-bezier(.16,1,.3,1) both; }
+@keyframes modalIn { from { opacity: 0; transform: translateY(30px) scale(.98); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 800px) { .wa-float { right: 14px; bottom: 14px; width: 52px; height: 52px; } .date-strip { grid-template-columns: repeat(5, 1fr); } }
